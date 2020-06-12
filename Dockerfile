@@ -46,7 +46,9 @@ COPY requirements.txt /tmp/
 COPY ./ckan /usr/lib/ckan/src/ckan
 
 RUN $CKAN_HOME/bin/pip install -r /usr/lib/ckan/src/ckan/requirements.txt
-RUN $CKAN_HOME/bin/python /usr/lib/ckan/src/ckan/setup.py install
+WORKDIR /usr/lib/ckan/src/ckan
+RUN $CKAN_HOME/bin/python setup.py install
+WORKDIR /opt/inventory-app
 
 # Install ckan dependencies
 RUN $CKAN_HOME/bin/pip install -r /tmp/requirements.txt
