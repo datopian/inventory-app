@@ -43,14 +43,9 @@ RUN mkdir -p $CKAN_HOME && \
   virtualenv $CKAN_HOME -p /usr/local/bin/python
 
 COPY requirements.txt /tmp/
-COPY ./ckan /usr/lib/ckan/src/ckan
-
-RUN $CKAN_HOME/bin/pip install -r /usr/lib/ckan/src/ckan/requirements.txt
-WORKDIR /usr/lib/ckan/src/ckan
-RUN $CKAN_HOME/bin/python setup.py install
-WORKDIR /opt/inventory-app
 
 # Install ckan dependencies
+RUN $CKAN_HOME/bin/pip install -e git+https://gitlab.com/nightsh/gsa-ckan.git@feature/react-dataset#egg=ckan
 RUN $CKAN_HOME/bin/pip install -r /tmp/requirements.txt
 
 COPY entrypoint-docker.sh /
