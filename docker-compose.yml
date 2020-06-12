@@ -15,7 +15,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ../ckan:/usr/lib/ckan
+      - ckan:/usr/lib/ckan
       - ./config:/etc/ckan
       - .:/opt/inventory-app
 
@@ -38,3 +38,6 @@ services:
 
   solr:
     image: datagov/catalog-solr:inventory
+
+volumes:
+  ckan:
