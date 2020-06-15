@@ -45,7 +45,6 @@ RUN mkdir -p $CKAN_HOME && \
 COPY requirements.txt /tmp/
 
 # Install ckan dependencies
-RUN $CKAN_HOME/bin/pip install -e git+https://gitlab.com/nightsh/gsa-ckan.git@feature/react-dataset#egg=ckan
 RUN $CKAN_HOME/bin/pip install -r /tmp/requirements.txt
 
 COPY entrypoint-docker.sh /
