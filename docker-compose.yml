@@ -1,6 +1,7 @@
 version: '3'
 services:
   app:
+    restart: always
     build: .
     command: /opt/inventory-app/start.sh
     depends_on:
@@ -20,6 +21,7 @@ services:
       - .:/opt/inventory-app
 
   datastore:
+    restart: always
     image: postgres:9.6
     environment:
       POSTGRES_USER: datastore
@@ -29,6 +31,7 @@ services:
       - ./datastore/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
   db:
+    restart: always
     image: datagov/catalog-db:latest
     environment:
       POSTGRES_USER: postgres
@@ -37,6 +40,7 @@ services:
       DB_CKAN_DB: ckan
 
   solr:
+    restart: always
     image: datagov/catalog-solr:inventory
 
 volumes:
